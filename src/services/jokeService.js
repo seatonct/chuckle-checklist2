@@ -18,3 +18,39 @@ export const postJoke = async (joke) => {
 export const getAllJokes = () => {
   return fetch("http://localhost:8088/jokes").then((res) => res.json());
 };
+
+export const toggleJokeTold = async (joke) => {
+  fetch(`http://localhost:8088/jokes/${joke.id}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "PATCH",
+    body: JSON.stringify({
+      told: true,
+    }),
+  }).then(function (response) {
+    return response.json();
+  });
+};
+
+export const toggleJokeUntold = async (joke) => {
+  fetch(`http://localhost:8088/jokes/${joke.id}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "PATCH",
+    body: JSON.stringify({
+      told: false,
+    }),
+  }).then(function (response) {
+    return response.json();
+  });
+};
+
+export const deleteJoke = async (joke) => {
+  fetch(`http://localhost:8088/jokes/${joke.id}`, {
+    method: "DELETE",
+  }).then((res) => res.json());
+};
