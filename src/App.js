@@ -1,5 +1,11 @@
 import "./App.css";
-import { postJoke, getAllJokes } from "./services/jokeService";
+import {
+  postJoke,
+  getAllJokes,
+  toggleJokeTold,
+  toggleJokeUntold,
+  deleteJoke,
+} from "./services/jokeService";
 import { useEffect, useState } from "react";
 
 export const App = () => {
@@ -32,12 +38,12 @@ export const App = () => {
   }, [allJokes]); //clears the input field
 
   return (
-    <div class="app-container">
-      <div class="app-heading">
-        <h1 class="app-heading-text">Chuckle Checklist</h1>
+    <div className="app-container">
+      <div className="app-heading">
+        <h1 className="app-heading-text">Chuckle Checklist</h1>
       </div>
       <h2>Add Joke</h2>
-      <div class="joke-add-form">
+      <div className="joke-add-form">
         <input
           className="joke-input"
           type="text"
@@ -48,7 +54,7 @@ export const App = () => {
           }}
         />
         <button
-          class="joke-input-submit"
+          className="joke-input-submit"
           onClick={async () => {
             await postJoke(newJoke);
             getAndSetJokes();
@@ -57,23 +63,59 @@ export const App = () => {
           Add
         </button>
       </div>
-      <div class="joke-lists-container">
-        <div class="joke-list-container">
+      <div className="joke-lists-container">
+        <div className="joke-list-container">
           <h2>Untold</h2>
           {untoldJokes.map((joke) => {
             return (
-              <div key={joke.id} class="joke-list-item">
+              <div key={joke.id} className="joke-list-item">
                 {joke.text}
+                <button
+                  className="joke-list-action-toggle"
+                  onClick={() => {
+                    toggleJokeTold(joke);
+                    getAndSetJokes();
+                  }}
+                >
+                  Told
+                </button>
+                <button
+                  className="joke-list-action-delete"
+                  onClick={() => {
+                    deleteJoke(joke);
+                    getAndSetJokes();
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             );
           })}
         </div>
-        <div class="joke-list-container">
+        <div className="joke-list-container">
           <h2>Told</h2>
           {toldJokes.map((joke) => {
             return (
-              <div key={joke.id} class="joke-list-item">
+              <div key={joke.id} className="joke-list-item">
                 {joke.text}
+                <button
+                  className="joke-list-action-toggle"
+                  onClick={() => {
+                    toggleJokeUntold(joke);
+                    getAndSetJokes();
+                  }}
+                >
+                  Untold
+                </button>
+                <button
+                  className="joke-list-action-delete"
+                  onClick={() => {
+                    deleteJoke(joke);
+                    getAndSetJokes();
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             );
           })}
