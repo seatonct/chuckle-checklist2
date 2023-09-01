@@ -15,12 +15,12 @@ export const postJoke = async (joke) => {
   const response = await fetch("http://localhost:8088/jokes", postInput);
 };
 
-export const getAllJokes = () => {
+export const getAllJokes = async () => {
   return fetch("http://localhost:8088/jokes").then((res) => res.json());
 };
 
 export const toggleJokeTold = async (joke) => {
-  fetch(`http://localhost:8088/jokes/${joke.id}`, {
+  await fetch(`http://localhost:8088/jokes/${joke.id}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export const toggleJokeTold = async (joke) => {
 };
 
 export const toggleJokeUntold = async (joke) => {
-  fetch(`http://localhost:8088/jokes/${joke.id}`, {
+  await fetch(`http://localhost:8088/jokes/${joke.id}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const toggleJokeUntold = async (joke) => {
 };
 
 export const deleteJoke = async (joke) => {
-  fetch(`http://localhost:8088/jokes/${joke.id}`, {
+  await fetch(`http://localhost:8088/jokes/${joke.id}`, {
     method: "DELETE",
   }).then((res) => res.json());
 };
