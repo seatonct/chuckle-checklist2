@@ -65,7 +65,9 @@ export const App = () => {
       </div>
       <div className="joke-lists-container">
         <div className="joke-list-container">
-          <h2>Untold</h2>
+          <h2>
+            Untold <i className="fa-regular fa-face-meh" />
+          </h2>
           {untoldJokes.map((joke) => {
             return (
               <div key={joke.id} className="joke-list-item">
@@ -77,7 +79,7 @@ export const App = () => {
                     getAndSetJokes();
                   }}
                 >
-                  Told
+                  <i class="fa-regular fa-face-laugh-squint"></i>
                 </button>
                 <button
                   className="joke-list-action-delete"
@@ -86,14 +88,16 @@ export const App = () => {
                     getAndSetJokes();
                   }}
                 >
-                  Delete
+                  <i class="fa-solid fa-trash"></i>
                 </button>
               </div>
             );
           })}
         </div>
         <div className="joke-list-container">
-          <h2>Told</h2>
+          <h2>
+            Told <i class="fa-regular fa-face-laugh-squint"></i>
+          </h2>
           {toldJokes.map((joke) => {
             return (
               <div key={joke.id} className="joke-list-item">
@@ -105,7 +109,7 @@ export const App = () => {
                     getAndSetJokes();
                   }}
                 >
-                  Untold
+                  <i className="fa-regular fa-face-meh" />
                 </button>
                 <button
                   className="joke-list-action-delete"
@@ -114,7 +118,7 @@ export const App = () => {
                     getAndSetJokes();
                   }}
                 >
-                  Delete
+                  <i class="fa-solid fa-trash"></i>
                 </button>
               </div>
             );
