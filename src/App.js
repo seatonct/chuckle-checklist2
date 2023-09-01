@@ -14,7 +14,7 @@ export const App = () => {
   const [toldJokes, setToldJokes] = useState([]);
   const [untoldJokes, setUntoldJokes] = useState([]);
 
-  const getAndSetJokes = () => {
+  const getAndSetJokes = async () => {
     getAllJokes().then((jokesArray) => {
       setAllJokes(jokesArray);
     });
@@ -72,8 +72,8 @@ export const App = () => {
                 {joke.text}
                 <button
                   className="joke-list-action-toggle"
-                  onClick={() => {
-                    toggleJokeTold(joke);
+                  onClick={async () => {
+                    await toggleJokeTold(joke);
                     getAndSetJokes();
                   }}
                 >
@@ -81,8 +81,8 @@ export const App = () => {
                 </button>
                 <button
                   className="joke-list-action-delete"
-                  onClick={() => {
-                    deleteJoke(joke);
+                  onClick={async () => {
+                    await deleteJoke(joke);
                     getAndSetJokes();
                   }}
                 >
@@ -100,8 +100,8 @@ export const App = () => {
                 {joke.text}
                 <button
                   className="joke-list-action-toggle"
-                  onClick={() => {
-                    toggleJokeUntold(joke);
+                  onClick={async () => {
+                    await toggleJokeUntold(joke);
                     getAndSetJokes();
                   }}
                 >
@@ -109,8 +109,8 @@ export const App = () => {
                 </button>
                 <button
                   className="joke-list-action-delete"
-                  onClick={() => {
-                    deleteJoke(joke);
+                  onClick={async () => {
+                    await deleteJoke(joke);
                     getAndSetJokes();
                   }}
                 >
